@@ -1,0 +1,87 @@
+{% extends 'tech_fair/base.html' %}
+{% block content %}
+
+<style>
+    /* Fake image, just for this example */
+.fakeimg {
+  background-color: #aaa;
+  width: 100%;
+  padding: 20px;
+}
+body {
+  font-family: "Arial", sans-serif;
+}
+
+.sidenav {
+  width: 120px;
+  position: fixed; !important
+  z-index: 1;
+  top: 200px;
+  left: 10px;
+  background: #eee;
+  overflow-x: hidden;
+  padding: 8px 0;
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 20px;
+  text-decoration: none;
+  font-size: 25px;
+  color: black;
+  display: block;
+}
+
+.sidenav a:hover {
+  color:rgb(83, 5, 5);
+}
+
+.main {
+  margin-left: 140px; /* Same width as the sidebar + left position in px */
+  font-size: 28px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 40px;}
+  .sidenav a {font-size: 10px;}
+}
+h1{
+    border-bottom: solid black;
+    width: fit-content;
+}
+
+</style>
+
+<body>
+    
+<div class="sidenav">
+    <a href="#about" style="font-size: medium">Company Parking</a>
+    <a href="https://www.csuchico.edu/parking/" style="font-size: medium">Student Parking</a>
+  </div>
+
+
+<div class="main">
+    <h1>Parking Information</h1>
+    <h2 style="color:rgb(83, 5, 5)">Company Parking</h2>
+    <a href="https://www.csuchico.edu/maps/campus/?id=1193#!ce/28506?ct/28514,28506,36245,40549,36472,36247,32703,32116,32115,32092,32068,32015,31198?mc/39.72912455427536,-121.84783176518978?z/17?lvl/0"><img src="https://www.csuchico.edu/parking/_assets/images/cards-map-noborder.jpg" alt=""></a>
+    
+    <p>
+        Parking is offered upon company registration. Although if you wish to park closer to campus there is 
+        "Visitor Parking".
+    </p>
+    <br>
+    <h2 style="color:rgb(83, 5, 5)">Visitor Parking</h2>
+    <p>Chico state offers payment parking to it's visitors via the pay-to-park application. 
+        Offering low rate timed parking for the corresponding parking zone. All you have to do is 
+        donwload the app bellow by clicking on the pay-to-park sign. Next you finding a lot to park in 
+        using the 4-digit zone number.  
+    </p>
+    <a href="https://ppprk.com/park/">
+    <img src="https://www.csuchico.edu/parking/_assets/images/passport.jpg" alt="">
+    </a>
+
+  </div>  
+  <br>
+</body>
+
+{% endblock %}

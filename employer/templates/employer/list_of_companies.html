@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+{% extends 'tech_fair/base.html' %}
+{% block content %}
+{% load static %}
+<style>
+    url(https://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100);
+
+body {
+  background-color: #3e94ec;
+  font-family: "Roboto", helvetica, arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+}
+
+div.table-title {
+   display: block;
+  margin: auto;
+  max-width: 600px;
+  padding:5px;
+  width: 100%;
+}
+
+.table-title h3 {
+   color: #fafafa;
+   font-size: 30px;
+   font-weight: 400;
+   font-style:normal;
+   font-family: "Roboto", helvetica, arial, sans-serif;
+   text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+   text-transform:uppercase;
+}
+
+
+/*** Table Styles **/
+
+.table-fill {
+  background: white;
+  border-radius:3px;
+  border-collapse: collapse;
+  height: 320px;
+  margin: auto;
+  max-width: 600px;
+  padding:5px;
+  width: 100%;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  animation: float 5s infinite;
+}
+ 
+th {
+  color:#D5DDE5;;
+  background:#1b1e24;
+  border-bottom:4px solid #9ea7af;
+  border-right: 1px solid #343a45;
+  font-size:23px;
+  font-weight: 100;
+  padding:24px;
+  text-align:left;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  vertical-align:middle;
+}
+
+th:first-child {
+  border-top-left-radius:3px;
+}
+ 
+th:last-child {
+  border-top-right-radius:3px;
+  border-right:none;
+}
+  
+tr {
+  border-top: 1px solid #C1C3D1;
+  border-bottom-: 1px solid #C1C3D1;
+  color:#666B85;
+  font-size:16px;
+  font-weight:normal;
+  text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
+}
+ 
+tr:hover td {
+  background:#4E5066;
+  color:#FFFFFF;
+  border-top: 1px solid #22262e;
+}
+ 
+tr:first-child {
+  border-top:none;
+}
+
+tr:last-child {
+  border-bottom:none;
+}
+ 
+tr:nth-child(odd) td {
+  background:#EBEBEB;
+}
+ 
+tr:nth-child(odd):hover td {
+  background:#4E5066;
+}
+
+tr:last-child td:first-child {
+  border-bottom-left-radius:3px;
+}
+ 
+tr:last-child td:last-child {
+  border-bottom-right-radius:3px;
+}
+ 
+td {
+  background:#FFFFFF;
+  padding:20px;
+  text-align:left;
+  vertical-align:middle;
+  font-weight:300;
+  font-size:18px;
+  text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+  border-right: 1px solid #C1C3D1;
+}
+
+td:last-child {
+  border-right: 0px;
+}
+
+th.text-left {
+  text-align: left;
+}
+
+th.text-center {
+  text-align: center;
+}
+
+th.text-right {
+  text-align: right;
+}
+
+td.text-left {
+  text-align: left;
+}
+
+td.text-center {
+  text-align: center;
+}
+
+td.text-right {
+  text-align: right;
+}
+h1 {
+    border-bottom: solid black;
+    width: fit-content;
+
+
+}
+label{
+    border-bottom: 1px solid black;
+    width: fit-content;
+}
+</style>
+<div style="padding:20px">
+<h1 style="color:rgb(73, 15, 15)">List of Companies</h1>
+</div>
+
+
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Table Style</title>
+    <meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; width=device-width;">
+</head>
+
+<body>
+    <div class="row" style="text-align:center">
+        <div class="col">
+            <div class="card card-body">
+                <form method="get">
+                    <label for="text"> <strong>Filter:</strong></label>
+                    <input type="text" name="q" placeholder="Search Name">
+                    <select name ="major_select">
+                        <option value="">--Major--</option>
+                        <option value = "1">Computer Animation & Game Development</option>
+                        <option value = "2"> Civil Engineering</option>
+                        <option value = "3">Computer Engineering</option>
+                        <option value = "4">Computer Information Systems</option>
+                        <option value = "5">Computer Scienece</option>
+                        <option value = "6">Construction Industry Management</option>
+                        <option value = "7">Concrete Industry Management</option>
+                        <option value = "8">Construction Management</option>
+                        <option value = "9">Electrical Engineering</option>
+                        <option value = "10">Mechanical Engineering</option>
+                        <option value = "11">Mechatronic Engineering</option>
+                        <option value = "12">Sustainable Engineering</option>
+                    </select>
+                    <select name ="education_level_select">
+                        <option value="">--Education Level--</option>
+                        <option value = "1">Freshmen</option>
+                        <option value = "2">Sophmore</option>
+                        <option value = "3">Junior</option>
+                        <option value = "4">Senior</option>
+                        <option value = "5">Graduate</option>
+                        <option value = "6">Work Experience</option>
+                    </select>
+                    <input type='submit' value='Search'>
+                </form>
+                
+            </div>
+    
+        </div>
+        
+    </div>
+<div class="table-title">
+<!--<h3>Data Table</h3>-->
+
+    
+</div>
+</div>
+<table class="table-fill" id="table2" cellpadding="0" cellspacing="0">
+ 
+<thead>
+<tr>
+<th class="text-left">Company Name</th>
+<th class="text-left">Description</th>
+<th class="text-left">Email</th>
+<th class="text-left">Link</th>
+<th class="text-left">Majors</th>
+<th class="text-left">Experience</th>
+
+</tr>
+</thead>
+<tbody class="table-hover"  >
+<tr>
+{% for company in companies %}
+<td class="text-left">{{company.name}}</td>
+<td class="text-left">{{company.description}}</td>
+<td class="text-left">{{company.email}}</td>
+<td class="text-left">{{company.url}}</td>
+<td class="text-left">{{company.major}}</td>
+<td class="text-left">{{company.education_level}}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+<script>
+    var table2_Props = {
+    col_0: "select",
+    col_4: "none",
+    display_all_text: " [ Show all ] ",
+    sort_select: true
+};
+var tf2 = setFilterGrid("table2", table2_Props);
+</script>
+<br><br>
+
+</body>
+
+{% endblock %}

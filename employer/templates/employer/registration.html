@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+{% extends 'tech_fair/base.html' %}
+{% block content %}
+<h1 style="padding:20px">Registration</h1>
+
+<style>
+    .multiselect-container>li>a>label {
+        padding: 4px 20px 3px 20px;
+    }
+        
+    .dropdown-check-list {
+        display: inline-block;
+    }
+    .dropdown-check-list .anchor {
+        position: relative;
+        cursor: pointer;
+        display: inline-block;
+        padding: 5px 50px 5px 10px;
+        border: 1px solid #ccc;
+    }
+    .dropdown-check-list .anchor:after {
+        position: absolute;
+        content: "";
+        border-left: 2px solid black;
+        border-top: 2px solid black;
+        padding: 5px;
+        right: 10px;
+        top: 20%;
+        -moz-transform: rotate(-135deg);
+        -ms-transform: rotate(-135deg);
+        -o-transform: rotate(-135deg);
+        -webkit-transform: rotate(-135deg);
+        transform: rotate(-135deg);
+    }
+    .dropdown-check-list .anchor:active:after {
+        right: 8px;
+        top: 21%;
+    }
+    .dropdown-check-list .anchor1:active:after {
+        right: 8px;
+        top: 21%;
+    }
+
+    .dropdown-check-list ul.items {
+        padding: 2px;
+        display: none;
+        margin: 0;
+        border: 1px solid #ccc;
+        border-top: none;
+    }
+    .dropdown-check-list ul.items li {
+        list-style: none;
+    }
+    .dropdown-check-list.visible .anchor {
+        color: #030303;
+    }
+    .dropdown-check-list.visible .anchor1 {
+        color: #030303;
+    }
+    
+    
+    .dropdown-check-list.visible .items {
+        display: block;
+    }
+    h2{
+        color:red;
+        padding:20px
+    }
+</style>
+<h2><strong>{{Error}}</strong></h2>
+<form action="{% url 'employer:add_company' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-groups" style="padding:20px"
+      <label for="exampleFormControlInput1"><strong>Company Name</strong></label>
+      <input type="name" name="name" class="form-control" id="exampleFormControlInput1" placeholder="Company Name">
+    </div>
+    <div class="form-group" style="padding:20px">
+        <label for="exampleFormControlTextarea1"><strong>Company Description</strong></label>
+        <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3" placeholder="Description"></textarea>
+      </div>
+    <div class="form-group" style="padding:20px">
+        <label for="file"><strong>Logo</strong></label>
+        <input type="file" class="form-control" name="logo" id="id_docfile" accept="image" placeholder="picture">
+
+    </div>
+    <div class="form-group" style="padding:20px">
+        <label for="url"><strong>URL</strong></label>
+        <input type="url" class="form-control" name="url" id="url" placeholder="CompanyName.com">
+    </div>
+    <div class="form-groups" style="padding:20px">
+      <div class="row">
+          <div class="col">
+            <label for="email"><strong>Contact Email</strong></label>
+            <input type="email" class="form-control" name="email" id="email" placeholder="example@service.org">
+          </div>
+          <div class="col">
+            <label for="email"><strong>Billing Email</strong></label>
+            <input type="email" class="form-control" name="bus_email" id="bus_email" placeholder="example@service.org">
+          </div>
+      </div>
+    </div>
+    <div class="form-groups" style="padding:20px">
+        <label for="education_level"> <strong>Education Level</strong></label><br>
+        <input type="checkbox" name="education_level" value="1"> Freshmen
+        <input type="checkbox" name="education_level" value="2"> Sophmore 
+        <input type="checkbox" name="education_level" value="3"> Junior 
+        <br>
+        <input type="checkbox" name="education_level" value="4"> Senior
+        <input type="checkbox" name="education_level" value="5"> Graduate
+        <input type="checkbox" name="education_level" value="6"> Working Experience 
+        
+    </div>
+    <div class="form-group" style="padding:20px">
+        <label for="major">Major Interests</label><br>
+        <div id="list1" class="dropdown-check-list" tabindex="100">
+            <span class="anchor">Select Majors</span>
+            <ul class="items">
+                <li><input type="checkbox" name="major" id="1" value="1" />Computer Animation & Game Development</li>
+                <li><input type="checkbox" name="major" id="2" value="2" />Civil Engineering</li>
+                <li><input type="checkbox" name="major" id="12" value="3"/>Computer Engineering</li>
+                <li><input type="checkbox" name="major" id="3" value="4"/>Computer Information Systems</li>
+                <li><input type="checkbox" name="major" id="4" value="5"/>Computer Science</li>
+                <li><input type="checkbox" name="major" id="5" value="6"/>Construction Industry Management</li>
+                <li><input type="checkbox" name="major" id="6" value="7"/>Concrete Industry Management</li>
+                <li><input type="checkbox" name="major" id="7" value="8"/>Contstruction Management</li>
+                <li><input type="checkbox" name="major" id="8" value="9"/>Electrical Engineering</li>
+                <li><input type="checkbox" name="major" id="9" value="10"/>Mechanical Engineering</li>
+                <li><input type="checkbox" name="major" id="10" value="11"/>Mechatronic Engineering</li>
+                <li><input type="checkbox" name="major" id="11" value="12"/>Sustainable Manufacturing</li>
+            </ul>
+        </div>
+      
+        <script type="text/javascript">
+      
+            var checkList = document.getElementById('list1');
+            checkList.getElementsByClassName('anchor')[0].onclick = function (evt) {
+                if (checkList.classList.contains('visible'))
+                    checkList.classList.remove('visible');
+                else
+                    checkList.classList.add('visible');
+            }
+        </script>
+    </div>
+    <div class="form-group" style="padding:20px">
+        <input type="submit" value="Submit Form">
+    </div>
+    <br><br><br>
+</form>
+
+{% endblock content %}
+
+
