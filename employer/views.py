@@ -5,6 +5,8 @@ from django.utils import timezone
 from django.db.models import Q
 from django.core.mail import BadHeaderError, send_mail
 from django.template.loader import get_template
+from django.conf import settings
+from tech_career_fair.settings import EMAIL_HOST_USER
 
 # Create your views here.
 def list_of_companies(request):
@@ -45,6 +47,7 @@ def list_of_companies(request):
     if mjr:
         search_results = search_results.filter(Q(major__contains=mjr))
     
+    
     return render(request, 'employer/list_of_companies.html',{'companies':search_results })
 
     
@@ -68,9 +71,11 @@ def add_company(request):
         majors = data.getlist('major')
         edulevel = data.getlist('education_level')
         create_obj = Company.objects.create( business_email =businesscontact, name = company_name,description=desc,logo =img,email=contact,education_level = edulevel,major =majors,url=link)
-
+        recepient = str(contact)
      
         create_obj.save()
+        print(recepient)
+        send_mail('invoice','thank you for registering', EMAIL_HOST_USER, ['mamejia@csuchico.edu','mariomejia4263@yahoo.com'], fail_silently = False)        
         print(create_obj)
         print(create_obj.business_email)
         print(create_obj.url)
