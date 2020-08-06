@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'employer',
     'multiselectfield',
     'django_filters',
-    'django_smtp_ssl'
 ]
 
 MIDDLEWARE = [
