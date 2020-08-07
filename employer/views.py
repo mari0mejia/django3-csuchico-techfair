@@ -63,7 +63,7 @@ def registration(request):
 def add_company(request):
     if request.method == "POST":
         if Company.objects.count():
-            value = Company.objects.order_by('id').last().invoice_no
+            value = int(Company.objects.order_by('id').last().invoice_no)+1
         else:
             value = randint(1500000,300000000)
             
