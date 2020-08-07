@@ -27,9 +27,11 @@ class Company(models.Model):
         (12,'Sustainable Manufacturing'),
     )
     name = models.CharField(max_length=200)
+    registerer = models.CharField(max_length=200)
     description = models.CharField(max_length=250)
     logo = models.ImageField(upload_to = 'tech_fair/images/') 
     url = models.URLField()
+    invoice_no = models.CharField(max_length=500, blank=True)
     email = models.EmailField(max_length = 254)
     business_email = models.EmailField(max_length=254)
     education_level = MultiSelectField(choices = YEAR_LEVEL ,max_length=6)

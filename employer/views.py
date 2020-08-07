@@ -7,6 +7,9 @@ from django.core.mail import BadHeaderError, send_mail
 from django.template.loader import get_template
 from django.conf import settings
 from tech_career_fair.settings import EMAIL_HOST_USER
+from random import randint
+from django.template.loader import render_to_string
+
 
 # Create your views here.
 def list_of_companies(request):
@@ -59,23 +62,29 @@ def registration(request):
     return render(request, 'employer/registration.html')
 def add_company(request):
     if request.method == "POST":
+        if Company.objects.count():
+            value = Company.objects.order_by('id').last().invoice_no
+        else:
+            value = randint(1500000,300000000)
+            
         data = request.POST.copy()
         company_name = data.get('name')
         if Company.objects.filter(name=company_name).exists():
             return render(request, 'employer/registration.html',{'Error': 'Error: Name used already'})
         desc = data.get('description')
+        reg = data.get('registerer')
         link = data.get('url')
         contact = data.get('email')
         businesscontact = data.get('bus_email')
         img = request.FILES['logo']
         majors = data.getlist('major')
         edulevel = data.getlist('education_level')
-        create_obj = Company.objects.create( business_email =businesscontact, name = company_name,description=desc,logo =img,email=contact,education_level = edulevel,major =majors,url=link)
+        create_obj = Company.objects.create(registerer=reg,invoice_no=value, business_email =businesscontact, name = company_name,description=desc,logo =img,email=contact,education_level = edulevel,major =majors,url=link)
         recepient = str(contact)
-     
+        rendered = render_to_string('employer/invoice.html', {'employee':reg,'name':company_name,'comnum':value})
         create_obj.save()
         print(recepient)
-        send_mail('invoice','thank you for registering', EMAIL_HOST_USER, ['mamejia@csuchico.edu','mariomejia4263@yahoo.com'], fail_silently = False)        
+        send_mail('invoice',rendered, EMAIL_HOST_USER, [recepient], fail_silently = False)        
         print(create_obj)
         print(create_obj.business_email)
         print(create_obj.url)

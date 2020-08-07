@@ -127,7 +127,10 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
   # project/settings.py
 #DataFlair
-EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
+if not DEBUG:
+    EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
+else:
+    EMAIL_BACKEND ='django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = 1
 EMAIL_USE_SSL = 0
@@ -135,6 +138,8 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'mepjobfairinvoice@gmail.com'
 EMAIL_HOST_PASSWORD = 'techfairinvoice95926'
 DEFAULT_FROM_EMAIL ='smtp.gmail.com' 
+
+
 try:
     from .local_settings import *
 except ImportError:

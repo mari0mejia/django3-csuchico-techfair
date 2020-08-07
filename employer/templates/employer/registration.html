@@ -70,9 +70,13 @@
 <h2><strong>{{Error}}</strong></h2>
 <form action="{% url 'employer:add_company' %}" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
-    <div class="form-groups" style="padding:20px"
+    <div class="form-groups" style="padding:20px">
       <label for="exampleFormControlInput1"><strong>Company Name</strong></label>
       <input type="name" name="name" class="form-control" id="exampleFormControlInput1" placeholder="Company Name">
+    </div>
+    <div class="form-groups" style="padding:20px">
+      <label for="exampleFormControlInput1"><strong>Registerer</strong></label>
+      <input type="registerer" name="registerer" class="form-control" id="exampleFormControlInput1" placeholder="Registerer">
     </div>
     <div class="form-group" style="padding:20px">
         <label for="exampleFormControlTextarea1"><strong>Company Description</strong></label>
