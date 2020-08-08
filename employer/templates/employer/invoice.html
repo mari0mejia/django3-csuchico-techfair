@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 {% load static %}
 <html>
-<h1>{{employee}}</h1>
+<h1>{{employee|safe|escape}}</h1>
 <br><br>
 <p> 
     Thank you for registering in the Spring Technical Career Fair - October 15, 2020 Thursday, 1:00 - 6:00.
@@ -13,13 +13,13 @@
 <p>
     Your spot has been confirmed. If you need to cancel, please do so by October 8, 2020
 </p>
-<h1>Company:{{name}}</h1>
-<h1>Comfirmation Number:{{comnum}}</h1>
+<h1>Company:{{name|safe|escape}}</h1>
+<h1>Comfirmation Number:{{comnum|safe|escape}}</h1>
 <p>
     You will be receiving a link, from Paytrace.net, to pay for your reservation within 48 hours.  
 </p>
 <p>
-   <h5 style="text-indent: 50px;"> This is what the email will have as sender: Ben Duarte - Chico State 	&#60;notifications@paytrace.com></h5>
+   <h5 style="text-indent: 50px;"> This is what the email will have as sender: Ben Duarte - Chico State 	-notifications@paytrace.com-</h5>
 </p>
 <p>
     It will reference your Confirmation Number from above.

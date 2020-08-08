@@ -9,6 +9,16 @@ from django.conf import settings
 from tech_career_fair.settings import EMAIL_HOST_USER
 from random import randint
 from django.template.loader import render_to_string
+from django.template.loader import get_template
+from django.template.loader import get_template
+from django.template import Context
+from django.template import loader
+from django.utils.html import strip_tags
+
+
+
+
+
 
 
 # Create your views here.
@@ -82,9 +92,11 @@ def add_company(request):
         create_obj = Company.objects.create(registerer=reg,invoice_no=value, business_email =businesscontact, name = company_name,description=desc,logo =img,email=contact,education_level = edulevel,major =majors,url=link)
         recepient = str(contact)
         rendered = render_to_string('employer/invoice.html', {'employee':reg,'name':company_name,'comnum':value})
+        rendered =strip_tags(rendered) 
+        send_mail('Invoice', rendered, EMAIL_HOST_USER, [recepient])
         create_obj.save()
         print(recepient)
-        send_mail('invoice',rendered, EMAIL_HOST_USER, [recepient], fail_silently = False)        
+        #send_mail('Tech Fair Invoice','', EMAIL_HOST_USER, [recepient], fail_silently = False,rendered=rendered)        
         print(create_obj)
         print(create_obj.business_email)
         print(create_obj.url)
