@@ -92,8 +92,11 @@ def add_company(request):
         create_obj = Company.objects.create(registerer=reg,invoice_no=value, business_email =businesscontact, name = company_name,description=desc,logo =img,email=contact,education_level = edulevel,major =majors,url=link)
         recepient = str(contact)
         rendered = render_to_string('employer/invoice.html', {'employee':reg,'name':company_name,'comnum':value})
-        rendered =strip_tags(rendered) 
-        send_mail('Invoice', rendered, EMAIL_HOST_USER, [recepient])
+        rendered =strip_tags(rendered)
+        subject = 'CSU Chico MEP Technical Fair Comfirmation '+str(value)
+        ben =  'bduarte@csuchico.edu'
+        taylor = 'CSC2@csuchico.edu' 
+        send_mail(subject, rendered, EMAIL_HOST_USER, [recepient])
         create_obj.save()
         print(recepient)
         #send_mail('Tech Fair Invoice','', EMAIL_HOST_USER, [recepient], fail_silently = False,rendered=rendered)        
